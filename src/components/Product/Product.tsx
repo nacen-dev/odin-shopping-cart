@@ -8,10 +8,10 @@ export interface IProduct {
 
 const Product = ({name, image, price}: IProduct) => {
   return (
-    <div className="rounded p-2 flex flex-col gap-2">
-      <img src={image} alt="" />
-      <p>{name}</p>
-      <p>Price: ${price}</p>
+    <div className="rounded p-4 flex flex-col gap-2 bg-white w-[300px] h-[300px]">
+      <img src={image} alt="" className="h-[60%] rounded-[50%]" />
+      <p className="text-center text-xl font-semibold">{name}</p>
+      <p className="text-center text-xl">${price}</p>
     </div>
   ) 
 };
