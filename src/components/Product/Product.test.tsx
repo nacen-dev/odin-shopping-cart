@@ -12,7 +12,7 @@ describe("Product", () => {
     expect(screen.getByRole("img")).toHaveAttribute("src", props.img);
     expect(screen.getByText(/36/)).toBeInTheDocument();
     expect(screen.getByText(/Salmon Sushi Bake/)).toBeInTheDocument();
-    expect(screen.getByRole("button", {name: /order/i})).toBeInTheDocument();
+    expect(screen.getByRole("button", {name: /Add to Cart/i})).toBeInTheDocument();
   });
   
 });
