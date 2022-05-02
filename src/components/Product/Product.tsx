@@ -12,6 +12,7 @@ const Product = ({name, image, price}: IProduct) => {
       <img src={image} alt="" className="h-[60%] rounded-[50%]" />
       <p className="text-center text-xl font-semibold">{name}</p>
       <p className="text-center text-xl">${price}</p>
+      <button>Add to Cart</button>
     </div>
   ) 
 };
