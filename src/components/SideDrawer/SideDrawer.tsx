@@ -10,7 +10,7 @@ const SideDrawer = ({ onClose, open, className, children }: Props) => {
     <Modal
       onClose={onClose}
       open={open}
-      className={`right-0 top-0 h-full overflow-y-scroll w-[250px] p-4 rounded-none flex flex-col
+      className={`right-0 top-0 h-full overflow-y-scroll w-[300px] p-4 rounded-none flex flex-col
        ${styles.sideDrawer} ${className}`}
     >
         <button
