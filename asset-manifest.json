@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/odin-shopping-cart/static/css/main.2d4c6955.css",
-    "main.js": "/odin-shopping-cart/static/js/main.f5e749df.js",
+    "main.js": "/odin-shopping-cart/static/js/main.f1e37660.js",
     "static/media/home-bg.jpg": "/odin-shopping-cart/static/media/home-bg.16fe2c6a15f0dac043f1.jpg",
     "static/media/tex-mex-macaroni.jpg": "/odin-shopping-cart/static/media/tex-mex-macaroni.70ac200ba3c90246ae81.jpg",
     "static/media/sushi-bake.webp": "/odin-shopping-cart/static/media/sushi-bake.6fa87ae75b2c13745649.webp",
@@ -14,10 +14,10 @@
     "static/media/roast-corn-salsa.jpeg": "/odin-shopping-cart/static/media/roast-corn-salsa.e0859df9f8541592c40a.jpeg",
     "index.html": "/odin-shopping-cart/index.html",
     "main.2d4c6955.css.map": "/odin-shopping-cart/static/css/main.2d4c6955.css.map",
-    "main.f5e749df.js.map": "/odin-shopping-cart/static/js/main.f5e749df.js.map"
+    "main.f1e37660.js.map": "/odin-shopping-cart/static/js/main.f1e37660.js.map"
   },
   "entrypoints": [
     "static/css/main.2d4c6955.css",
-    "static/js/main.f5e749df.js"
+    "static/js/main.f1e37660.js"
   ]
 }
