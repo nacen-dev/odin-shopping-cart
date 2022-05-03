@@ -67,7 +67,7 @@ const CartContextProvider = ({ children }: Props) => {
     const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
 
     if (isProductInCart) {
-      addCartItemQuantity(cartItem, cartItem.quantity);
+      addCartItemQuantity(cartItem, 1);
     } else {
       setCart([...cart, cartItem]);
     }
