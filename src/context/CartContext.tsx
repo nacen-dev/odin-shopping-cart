@@ -18,7 +18,7 @@ export interface ICart {
   openCart: () => void;
   closeCart: () => void;
   showCart: boolean;
-  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => void
+  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => void;
 }
 
 export const CartContext = createContext<ICart>({
@@ -33,7 +33,7 @@ export const CartContext = createContext<ICart>({
   openCart: () => {},
   closeCart: () => {},
   showCart: false,
-  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => {}
+  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => {},
 });
 
 interface Props {
@@ -72,34 +72,20 @@ const CartContextProvider = ({ children }: Props) => {
   };
 
   const deleteFromCart = (cartItem: ICartItem) => {
-    const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
-
-    if (isProductInCart) {
-      setCart(
-        cart.map((cItem) => {
-          return cItem.id === cartItem.id
-            ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
-            : cItem;
-        })
-      );
-    } else {
-      setCart([...cart, cartItem]);
-    }
+    setCart(cart.filter(cItem => cItem.id !== cartItem.id));
   };
 
   const removeCartItemQuantity = (cartItem: ICartItem, quantity: number) => {
-    const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
-
-    if (isProductInCart) {
-      setCart(
-        cart.map((cItem) => {
-          return cItem.id === cartItem.id
-            ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
-            : cItem;
-        })
-      );
+    if (cartItem.quantity - quantity === 0) {
+      deleteFromCart(cartItem);
     } else {
-      setCart([...cart, cartItem]);
+      setCart(
+        cart.map((cItem) =>
+          cItem.id === cartItem.id
+            ? { ...cItem, quantity: cItem.quantity - quantity }
+            : cItem
+        )
+      );
     }
   };
 
@@ -127,7 +113,7 @@ const CartContextProvider = ({ children }: Props) => {
         openCart,
         closeCart,
         showCart,
-        addCartItemQuantity
+        addCartItemQuantity,
       }}
     >
       {children}
