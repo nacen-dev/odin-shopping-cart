@@ -11,19 +11,21 @@ const Cart = (props: Props) => {
     cart,
     addToCart,
     deleteFromCart,
-    removeQuantityFromCart,
+    removeCartItemQuantity,
     handleQuantityChange,
     closeCart,
   } = useContext(CartContext);
 
   const cartItems = () => {
     return (
-      <ul>
+      <ul className="flex flex-col gap-5">
         {cart.map((cartItem) => (
           <li key={cartItem.id}>
             <CartItem
               cartItem={cartItem}
               handleQuantityChange={handleQuantityChange}
+              addToCart={addToCart}
+              removeCartItemQuantity={removeCartItemQuantity}
             />
           </li>
         ))}
@@ -46,7 +48,7 @@ const Cart = (props: Props) => {
           </button>
         </div>
       ) : (
-        <div>
+        <div className="flex flex-col gap-4">
           {cartItems()}
           <button className="bg-red-700 text-white py-2 px-4 text-xl w-full">
             Checkout
