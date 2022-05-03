@@ -20,7 +20,7 @@ const Product = ({ id, name, image, price }: Props) => {
       <p className="text-center text-xl">${price}</p>
       <button
         className="border rounded p-2 bg-red-600 text-white"
-        onClick={() => addToCart({ name, image, price, id }, 1)}
+        onClick={() => addToCart({ name, image, price, id, quantity: 1 })}
       >
         Add to Cart
       </button>
