@@ -3,28 +3,31 @@ import { MdAdd, MdRemove } from "react-icons/md";
 import { ICartItem } from "../../context/CartContext";
 
 interface Props {
-  handleQuantityChange: (id: string, event: React.ChangeEvent<HTMLInputElement>) => void,
   cartItem: ICartItem
+  handleQuantityChange: (id: string, event: React.ChangeEvent<HTMLInputElement>) => void,
+  addToCart: (cartItem: ICartItem) => void;
 }
 
-const CartItem = ({handleQuantityChange, cartItem}: Props) => {
+const CartItem = ({cartItem, handleQuantityChange, addToCart}: Props) => {
   return (
-    <div>
-      <img src={cartItem.image} alt="" />
+    <div className="grid justify-center">
+      <img src={cartItem.image} alt="" className="h-[250px] w-[250px]"/>
       <div>
-        <h3>{cartItem.name}</h3>
-        <span>{cartItem.price}</span>
+        <h3 className="text-xl">{cartItem.name}</h3>
+        <span className="text-lg">${cartItem.price}</span>
       </div>
-      <div className="flex items-center">
-        <MdRemove />
+      <div className="flex items-center gap-2 text-lg">
+        <label className="text-lg">Quantity: </label>
+        <MdRemove className="cursor-pointer"/>
         <input
           value={cartItem.quantity}
           type="number"
           min="1"
           max="99"
           onChange={(event) => handleQuantityChange(cartItem.id, event)}
+          className="border text-center"
         />
-        <MdAdd />
+        <MdAdd onClick={() => addToCart(cartItem)} className="cursor-pointer" />
       </div>
     </div>
   );
