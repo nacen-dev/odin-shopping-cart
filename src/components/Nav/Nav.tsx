@@ -9,13 +9,13 @@ interface Props {
 const Nav = ({showCart}: Props) => {
   return (
     <nav className="py-2 px-4 flex bg-red-700 text-white items-center">
-      <Link to="/" className="mr-auto text-2xl">Resto</Link>
+      <Link to="/odin-shopping-cart" className="mr-auto text-2xl">Resto</Link>
       <ul className="flex gap-4 text-xl">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/odin-shopping-cart">Home</Link>
         </li>
         <li>
-          <Link to="/menu">Menu</Link>
+          <Link to="/odin-shopping-cart/menu">Menu</Link>
         </li>
         <li className="flex gap-2 items-center cursor-pointer" onClick={showCart}>
           <span>Cart</span>

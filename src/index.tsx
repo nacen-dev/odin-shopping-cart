@@ -17,7 +17,7 @@ root.render(
     <Router>
       <Routes>
         <Route
-          path="/"
+          path="/odin-shopping-cart"
           element={
             <CartContextProvider>
               <App />
