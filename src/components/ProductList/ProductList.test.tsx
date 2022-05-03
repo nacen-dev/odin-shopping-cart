@@ -3,9 +3,9 @@ import { screen, render } from "@testing-library/react";
 import { ProductList } from "./ProductList";
 
 const productList = [
-  { name: "X", price: 5, image: "" },
-  { name: "Y", price: 3, image: "" },
-  { name: "Z", price: 7, image: "" },
+  { name: "X", price: 5, image: "", id: "a" },
+  { name: "Y", price: 3, image: "", id: "b" },
+  { name: "Z", price: 7, image: "", id: "c" },
 ];
 
 describe("Product List", () => {
