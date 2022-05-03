@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/odin-shopping-cart/static/css/main.2d4c6955.css",
+    "main.js": "/odin-shopping-cart/static/js/main.f5e749df.js",
+    "static/media/home-bg.jpg": "/odin-shopping-cart/static/media/home-bg.16fe2c6a15f0dac043f1.jpg",
+    "static/media/tex-mex-macaroni.jpg": "/odin-shopping-cart/static/media/tex-mex-macaroni.70ac200ba3c90246ae81.jpg",
+    "static/media/sushi-bake.webp": "/odin-shopping-cart/static/media/sushi-bake.6fa87ae75b2c13745649.webp",
+    "static/media/hainanese-chicken.webp": "/odin-shopping-cart/static/media/hainanese-chicken.f0ad59d59ccac9181687.webp",
+    "static/media/salisbury-steak.jpg": "/odin-shopping-cart/static/media/salisbury-steak.cae195ad33bb246d4c97.jpg",
+    "static/media/chicken-karaage.jpg": "/odin-shopping-cart/static/media/chicken-karaage.9d23b6fe333494cacbb9.jpg",
+    "static/media/lemon-pepper-chicken.jpg": "/odin-shopping-cart/static/media/lemon-pepper-chicken.dc723e1a58a310da6532.jpg",
+    "static/media/banana-choco-chip-loaf.jpg": "/odin-shopping-cart/static/media/banana-choco-chip-loaf.08e10893326a2b18afa1.jpg",
+    "static/media/meat-loaf.jpeg": "/odin-shopping-cart/static/media/meat-loaf.1dd702df92cba8426f62.jpeg",
+    "static/media/roast-corn-salsa.jpeg": "/odin-shopping-cart/static/media/roast-corn-salsa.e0859df9f8541592c40a.jpeg",
+    "index.html": "/odin-shopping-cart/index.html",
+    "main.2d4c6955.css.map": "/odin-shopping-cart/static/css/main.2d4c6955.css.map",
+    "main.f5e749df.js.map": "/odin-shopping-cart/static/js/main.f5e749df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d4c6955.css",
+    "static/js/main.f5e749df.js"
+  ]
+}
