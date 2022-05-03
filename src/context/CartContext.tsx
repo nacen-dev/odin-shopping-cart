@@ -12,7 +12,7 @@ export interface ICart {
   deleteFromCart: (cartItem: ICartItem) => void;
   removeCartItemQuantity: (cartItem: ICartItem, quantity: number) => void;
   handleQuantityChange: (
-    id: string,
+    cartItem: ICartItem,
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
   openCart: () => void;
@@ -27,7 +27,7 @@ export const CartContext = createContext<ICart>({
   deleteFromCart: (cartItem: ICartItem) => {},
   removeCartItemQuantity: (cartItem: ICartItem, quantity: number) => {},
   handleQuantityChange: (
-    id: string,
+    cartItem: ICartItem,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {},
   openCart: () => {},
@@ -72,7 +72,7 @@ const CartContextProvider = ({ children }: Props) => {
   };
 
   const deleteFromCart = (cartItem: ICartItem) => {
-    setCart(cart.filter(cItem => cItem.id !== cartItem.id));
+    setCart(cart.filter((cItem) => cItem.id !== cartItem.id));
   };
 
   const removeCartItemQuantity = (cartItem: ICartItem, quantity: number) => {
@@ -90,16 +90,20 @@ const CartContextProvider = ({ children }: Props) => {
   };
 
   const handleQuantityChange = (
-    id: string,
+    cartItem: ICartItem,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setCart(
-      cart.map((cartItem) =>
-        cartItem.id === id
-          ? { ...cartItem, quantity: Number(event.target.value) }
-          : cartItem
-      )
-    );
+    if (Number(event.target.value) === 0) {
+      deleteFromCart(cartItem);
+    } else {
+      setCart(
+        cart.map((cItem) =>
+          cItem.id === cartItem.id
+            ? { ...cItem, quantity: Number(event.target.value) }
+            : cItem
+        )
+      );
+    }
   };
 
   return (
