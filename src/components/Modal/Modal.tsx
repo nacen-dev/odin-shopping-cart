@@ -22,7 +22,7 @@ const Modal = ({ children, open, onClose, className }: IModal) => {
             onClick={onClose}
           />
           <div
-            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-[1000] rounded-md ${className}`}
+            className={`fixed bg-white z-[1000] rounded-md ${className}`}
           >
             {children}
           </div>
