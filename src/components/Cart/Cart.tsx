@@ -26,6 +26,7 @@ const Cart = (props: Props) => {
               handleQuantityChange={handleQuantityChange}
               addToCart={addToCart}
               removeCartItemQuantity={removeCartItemQuantity}
+              deleteFromCart={deleteFromCart}
             />
           </li>
         ))}
@@ -50,7 +51,7 @@ const Cart = (props: Props) => {
       ) : (
         <div className="flex flex-col gap-4">
           {cartItems()}
-          <button className="bg-red-700 text-white py-2 px-4 text-xl w-full">
+          <button className="bg-green-700 text-white py-2 px-4 text-xl w-full">
             Checkout
           </button>
         </div>
