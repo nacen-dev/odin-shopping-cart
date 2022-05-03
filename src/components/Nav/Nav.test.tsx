@@ -7,7 +7,7 @@ describe("Nav", () => {
   it("renders Company Name, Home, Menu, Cart", () => {
     render(
       <Router>
-        <Nav />
+        <Nav showCart={jest.fn}/>
       </Router>
     );
 

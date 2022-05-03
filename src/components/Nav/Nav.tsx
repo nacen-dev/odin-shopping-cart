@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 
-interface Props {}
+interface Props {
+  showCart: () => void;
+}
 
-const Nav = (props: Props) => {
+const Nav = ({showCart}: Props) => {
   return (
     <nav className="py-2 px-4 flex bg-red-700 text-white items-center">
       <Link to="/" className="mr-auto text-2xl">Resto</Link>
@@ -15,7 +17,7 @@ const Nav = (props: Props) => {
         <li>
           <Link to="/menu">Menu</Link>
         </li>
-        <li className="flex gap-2 items-center">
+        <li className="flex gap-2 items-center cursor-pointer" onClick={showCart}>
           <span>Cart</span>
           <MdShoppingCart />
         </li>
