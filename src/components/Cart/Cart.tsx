@@ -44,7 +44,7 @@ const Cart = (props: Props) => {
         <div className="flex flex-col gap-4">
           <p className="text-lg">Your cart is empty</p>
           <button className="bg-red-700 text-white py-2 px-4 text-xl w-full">
-            <Link to="/menu" onClick={closeCart}>
+            <Link to="/odin-shopping-cart/menu" onClick={closeCart}>
               Browse Menu
             </Link>
           </button>

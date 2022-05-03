@@ -17,7 +17,7 @@ const Home = (props: Props) => {
     >
       <h1 className="text-4xl text-white">Delicious Food</h1>
       <button className="text-lg rounded py-4 px-6 bg-red-600 text-white">
-        <Link to="/menu">Order Now</Link>
+        <Link to="/odin-shopping-cart/menu">Order Now</Link>
       </button>
     </div>
   );
