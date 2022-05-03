@@ -19,6 +19,7 @@ export interface ICart {
   closeCart: () => void;
   showCart: boolean;
   addCartItemQuantity: (cartItem: ICartItem, quantity: number) => void;
+  calculateTotalPrice: () => number;
 }
 
 export const CartContext = createContext<ICart>({
@@ -34,6 +35,7 @@ export const CartContext = createContext<ICart>({
   closeCart: () => {},
   showCart: false,
   addCartItemQuantity: (cartItem: ICartItem, quantity: number) => {},
+  calculateTotalPrice: () => 0
 });
 
 interface Props {
@@ -106,6 +108,16 @@ const CartContextProvider = ({ children }: Props) => {
     }
   };
 
+  const calculateTotalPrice = () => {
+    return cart.reduce(
+      (currentValue, nextValue) => ({
+        ...currentValue,
+        price: currentValue.price + nextValue.quantity * nextValue.price,
+      }),
+      { price: 0 }
+    ).price;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -118,6 +130,7 @@ const CartContextProvider = ({ children }: Props) => {
         closeCart,
         showCart,
         addCartItemQuantity,
+        calculateTotalPrice
       }}
     >
       {children}
