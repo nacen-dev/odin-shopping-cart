@@ -14,7 +14,6 @@ const ProductList = ({ productList }: Props) => {
             image={product.image}
             name={product.name}
             price={product.price}
-            handleClick={() => {}}
             id={product.id}
           />
         </li>

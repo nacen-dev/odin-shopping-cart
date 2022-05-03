@@ -18,7 +18,6 @@ describe("Product", () => {
         image={props.img}
         name={props.name}
         price={props.price}
-        handleClick={props.handleClick}
         id={props.id}
       />
     );
@@ -37,7 +36,6 @@ describe("Product", () => {
         image={props.img}
         name={props.name}
         price={props.price}
-        handleClick={props.handleClick}
         id={props.id}
       />
     );
