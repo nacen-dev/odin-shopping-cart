@@ -10,7 +10,7 @@ export interface ICart {
   cart: ICartItem[];
   addToCart: (cartItem: ICartItem) => void;
   deleteFromCart: (cartItem: ICartItem) => void;
-  removeQuantityFromCart: (cartItem: ICartItem) => void;
+  removeCartItemQuantity: (cartItem: ICartItem, quantity: number) => void;
   handleQuantityChange: (
     id: string,
     event: React.ChangeEvent<HTMLInputElement>
@@ -18,13 +18,14 @@ export interface ICart {
   openCart: () => void;
   closeCart: () => void;
   showCart: boolean;
+  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => void
 }
 
 export const CartContext = createContext<ICart>({
   cart: [],
   addToCart: (cartItem: ICartItem) => {},
   deleteFromCart: (cartItem: ICartItem) => {},
-  removeQuantityFromCart: (cartItem: ICartItem) => {},
+  removeCartItemQuantity: (cartItem: ICartItem, quantity: number) => {},
   handleQuantityChange: (
     id: string,
     event: React.ChangeEvent<HTMLInputElement>
@@ -32,6 +33,7 @@ export const CartContext = createContext<ICart>({
   openCart: () => {},
   closeCart: () => {},
   showCart: false,
+  addCartItemQuantity: (cartItem: ICartItem, quantity: number) => {}
 });
 
 interface Props {
@@ -49,17 +51,21 @@ const CartContextProvider = ({ children }: Props) => {
     setShowCart(false);
   };
 
+  const addCartItemQuantity = (cartItem: ICartItem, quantity: number) => {
+    setCart(
+      cart.map((cItem) =>
+        cItem.id === cartItem.id
+          ? { ...cItem, quantity: cItem.quantity + quantity }
+          : cItem
+      )
+    );
+  };
+
   const addToCart = (cartItem: ICartItem) => {
     const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
 
     if (isProductInCart) {
-      setCart(
-        cart.map((cItem) => {
-          return cItem.id === cartItem.id
-            ? { ...cItem, quantity: cItem.quantity + cartItem.quantity }
-            : cItem;
-        })
-      );
+      addCartItemQuantity(cartItem, cartItem.quantity);
     } else {
       setCart([...cart, cartItem]);
     }
@@ -73,7 +79,7 @@ const CartContextProvider = ({ children }: Props) => {
         cart.map((cItem) => {
           return cItem.id === cartItem.id
             ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
-            : cartItem;
+            : cItem;
         })
       );
     } else {
@@ -81,7 +87,7 @@ const CartContextProvider = ({ children }: Props) => {
     }
   };
 
-  const removeQuantityFromCart = (cartItem: ICartItem) => {
+  const removeCartItemQuantity = (cartItem: ICartItem, quantity: number) => {
     const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
 
     if (isProductInCart) {
@@ -89,7 +95,7 @@ const CartContextProvider = ({ children }: Props) => {
         cart.map((cItem) => {
           return cItem.id === cartItem.id
             ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
-            : cartItem;
+            : cItem;
         })
       );
     } else {
@@ -115,12 +121,13 @@ const CartContextProvider = ({ children }: Props) => {
       value={{
         cart,
         addToCart,
-        removeQuantityFromCart,
+        removeCartItemQuantity,
         deleteFromCart,
         handleQuantityChange,
         openCart,
         closeCart,
         showCart,
+        addCartItemQuantity
       }}
     >
       {children}
