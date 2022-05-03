@@ -5,8 +5,8 @@ import App from "./App";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home/Home";
-import { ProductList } from "./components/ProductList/ProductList";
-import { productListData } from "./productsData";
+import { Menu } from "./components/Menu/Menu";
+import { CartContextProvider } from "./context/CartContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,12 +15,16 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route
+          path="/"
+          element={
+            <CartContextProvider>
+              <App />
+            </CartContextProvider>
+          }
+        >
           <Route index element={<Home />} />
-          <Route
-            path="menu"
-            element={<ProductList productList={productListData} />}
-          />
+          <Route path="menu" element={<Menu />} />
         </Route>
       </Routes>
     </Router>
