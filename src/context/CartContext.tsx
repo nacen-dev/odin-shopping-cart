@@ -1,19 +1,37 @@
 import React from "react";
-import { useState, useEffect, createContext } from "react";
+import { useState, createContext } from "react";
 import { IProduct } from "../components/Product/Product";
 
-interface CartItem extends IProduct {
+export interface ICartItem extends IProduct {
   quantity: number;
 }
 
-interface CartContextInterface {
-  cart: CartItem[];
-  addToCart: (product: IProduct, quantity: number) => void;
+export interface ICart {
+  cart: ICartItem[];
+  addToCart: (cartItem: ICartItem) => void;
+  deleteFromCart: (cartItem: ICartItem) => void;
+  removeQuantityFromCart: (cartItem: ICartItem) => void;
+  handleQuantityChange: (
+    id: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  openCart: () => void;
+  closeCart: () => void;
+  showCart: boolean;
 }
 
-export const CartContext = createContext<CartContextInterface>({
+export const CartContext = createContext<ICart>({
   cart: [],
-  addToCart: (product, quantity) => {},
+  addToCart: (cartItem: ICartItem) => {},
+  deleteFromCart: (cartItem: ICartItem) => {},
+  removeQuantityFromCart: (cartItem: ICartItem) => {},
+  handleQuantityChange: (
+    id: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {},
+  openCart: () => {},
+  closeCart: () => {},
+  showCart: false,
 });
 
 interface Props {
@@ -21,30 +39,90 @@ interface Props {
 }
 
 const CartContextProvider = ({ children }: Props) => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<ICartItem[]>([]);
+  const [showCart, setShowCart] = useState(false);
 
-  const addToCart = (product: IProduct, quantity: number) => {
-    const isProductInCart = cart.find((cartItem) => cartItem.id === product.id);
+  const openCart = () => {
+    setShowCart(true);
+  };
+  const closeCart = () => {
+    setShowCart(false);
+  };
+
+  const addToCart = (cartItem: ICartItem) => {
+    const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
 
     if (isProductInCart) {
       setCart(
-        cart.map((cartItem) => {
-          return cartItem.id === product.id
-            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+        cart.map((cItem) => {
+          return cItem.id === cartItem.id
+            ? { ...cItem, quantity: cItem.quantity + cartItem.quantity }
+            : cItem;
+        })
+      );
+    } else {
+      setCart([...cart, cartItem]);
+    }
+  };
+
+  const deleteFromCart = (cartItem: ICartItem) => {
+    const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
+
+    if (isProductInCart) {
+      setCart(
+        cart.map((cItem) => {
+          return cItem.id === cartItem.id
+            ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
             : cartItem;
         })
       );
     } else {
-      setCart([...cart, { ...product, quantity }]);
+      setCart([...cart, cartItem]);
     }
   };
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  const removeQuantityFromCart = (cartItem: ICartItem) => {
+    const isProductInCart = cart.find((cItem) => cItem.id === cartItem.id);
+
+    if (isProductInCart) {
+      setCart(
+        cart.map((cItem) => {
+          return cItem.id === cartItem.id
+            ? { ...cartItem, quantity: cItem.quantity + cartItem.quantity }
+            : cartItem;
+        })
+      );
+    } else {
+      setCart([...cart, cartItem]);
+    }
+  };
+
+  const handleQuantityChange = (
+    id: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCart(
+      cart.map((cartItem) =>
+        cartItem.id === id
+          ? { ...cartItem, quantity: Number(event.target.value) }
+          : cartItem
+      )
+    );
+  };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeQuantityFromCart,
+        deleteFromCart,
+        handleQuantityChange,
+        openCart,
+        closeCart,
+        showCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
