@@ -14,6 +14,7 @@ const Cart = (props: Props) => {
     removeCartItemQuantity,
     handleQuantityChange,
     closeCart,
+    calculateTotalPrice,
   } = useContext(CartContext);
 
   const cartItems = () => {
@@ -51,6 +52,10 @@ const Cart = (props: Props) => {
       ) : (
         <div className="flex flex-col gap-4">
           {cartItems()}
+          <div className="text-xl flex gap-1">
+            <span>Total:</span>
+            <span>${calculateTotalPrice()}</span>
+          </div>
           <button className="bg-green-700 text-white py-2 px-4 text-xl w-full">
             Checkout
           </button>
