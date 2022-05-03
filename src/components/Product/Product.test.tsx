@@ -8,6 +8,7 @@ const props = {
   name: "Salmon Sushi Bake",
   price: 36,
   handleClick: jest.fn(),
+  id: "2"
 };
 
 describe("Product", () => {
@@ -18,6 +19,7 @@ describe("Product", () => {
         name={props.name}
         price={props.price}
         handleClick={props.handleClick}
+        id={props.id}
       />
     );
 
@@ -36,6 +38,7 @@ describe("Product", () => {
         name={props.name}
         price={props.price}
         handleClick={props.handleClick}
+        id={props.id}
       />
     );
 
